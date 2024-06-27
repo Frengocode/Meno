@@ -8,19 +8,15 @@ import uuid
 import os
 import logging
 
-# Константа для директории хранения изображений
 IMAGEDIR = 'media/images'
 
-# Создаем роутер с префиксом /chat и тегом Chat
 router = APIRouter(
     prefix='/chat',
     tags=['Chat']
 )
 
-# Словарь для хранения подключенных клиентов WebSocket
 connected_clients = {}
 
-# Обработка WebSocket соединения
 @router.websocket("/ws/{chat_id}")
 async def websocket_endpoint(websocket: WebSocket, chat_id: int):
     await websocket.accept()
@@ -32,7 +28,6 @@ async def websocket_endpoint(websocket: WebSocket, chat_id: int):
         while True:
             data = await websocket.receive_text()
             logging.info(f"Received message from chat {chat_id}: {data}")
-            # Отправка полученного сообщения обратно всем клиентам
             for client in connected_clients[chat_id]:
                 if client != websocket:
                     await client.send_text(data)
@@ -41,7 +36,7 @@ async def websocket_endpoint(websocket: WebSocket, chat_id: int):
         if not connected_clients[chat_id]:
             del connected_clients[chat_id]
 
-# Отправка сообщения
+
 @router.post("/send/{chat_id}/", response_model=schema.Message)
 async def send_message(
     chat_id: int,
@@ -94,7 +89,7 @@ async def send_message(
 
     return message_response
 
-# Отправка контента
+
 @router.post("/send_content/{chat_id}/", response_model=schema.UserContentResponse)
 async def send_content(
     chat_id: int,
