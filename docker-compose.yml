@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: 'postgresql://postgres:python$_venv@db:5432/Meno'
+      
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: Meno
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: python$_venv
+    ports:
+      - "5432:5432"
