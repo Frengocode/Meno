@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-DATABASE_URL = 'postgresql://postgres:python$_venv@localhost:5432/Meno'
+DATABASE_URL = 'postgresql://SECRET_KEY'
 
 engine = create_engine(DATABASE_URL, echo=True)
 
