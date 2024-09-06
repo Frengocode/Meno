@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package video;
+
+service VideoReelsService {
+    rpc AddArchive (AddArchiveRequest) returns (AddArchiveResponse);
+}
+
+message AddArchiveRequest {
+    int32 reels_id = 1;
+    string user_id = 2;
+}
+
+message AddArchiveResponse {
+    string message = 1;
+}
