@@ -12,9 +12,7 @@ from PIL import Image
 import io
 from .chat_service import manager
 
-
 IMAGEDIR = "media/images/"
-
 
 class MenoService:
     def __init__(self, session: Session):
