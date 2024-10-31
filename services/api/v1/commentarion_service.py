@@ -150,3 +150,7 @@ class CommentarionService:
         ]
 
         return response
+
+    async def get_most_popular_comment(self):
+        pass
+        
