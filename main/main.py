@@ -30,8 +30,6 @@ app.include_router(video_reels.video_reels_router)
 app.include_router(notification.notification_router)
 
 
-
-
 origins = [
     "http://localhost",
     "http://localhost:8081",
@@ -65,3 +63,5 @@ scheduler.add_job(delete_old_history, IntervalTrigger(minutes=10))
 @app.on_event("shutdown")
 def shutdown_event():
     scheduler.shutdown()
+
+
