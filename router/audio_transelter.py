@@ -18,10 +18,8 @@ async def audio_to_text(file: UploadFile = File(...)):
             content = await file.read()
             await out_file.write(content)
 
-        # Convert the file to WAV format if necessary
         wav_file_path = convert_to_wav(temp_file_path)
 
-        # Recognize the text from the audio file
         text = recognize_audio(wav_file_path)
 
         if text is None:
